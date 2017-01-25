@@ -1,3 +1,9 @@
+/*
+    Author : Indra Kusuma
+    Build : DICODING
+    Kelas : Belajar Membangun Aplikasi Android Native
+
+*/
 package com.nbs.apps.hitungluas;
 
 import android.os.Bundle;
@@ -6,6 +12,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+//add textUtils
+import android.text.TextUtils;
+//add Toast
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private EditText edtPanjang, edtLebar;
@@ -26,15 +36,22 @@ public class MainActivity extends AppCompatActivity {
         btnHitung.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String panjang = edtPanjang.getText().toString().trim();
-                String lebar = edtLebar.getText().toString().trim();
+                //validasi jika textField kosong
+                if(TextUtils.isEmpty(edtPanjang.getText()) || TextUtils.isEmpty(edtLebar.getText())){
+                    //isi pesan
+                    Toast.makeText(MainActivity.this,"Nilai yang dimasukkan tidak boleh kosong",Toast.LENGTH_SHORT).show();
 
-                double p = Double.parseDouble(panjang);
-                double l = Double.parseDouble(lebar);
+                }else {
+                    String panjang = edtPanjang.getText().toString().trim();
+                    String lebar = edtLebar.getText().toString().trim();
 
-                double luas = p * l;
+                    double p = Double.parseDouble(panjang);
+                    double l = Double.parseDouble(lebar);
 
-                txtLuas.setText("Luas : "+luas);
+                    double luas = p * l;
+
+                    txtLuas.setText("Luas : "+luas);
+                }
             }
         });
     }
